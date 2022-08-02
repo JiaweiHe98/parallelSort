@@ -35,8 +35,8 @@ public class Merger {
             pt++;
         }
 
-        for (int i = l1; i <= r2; i++) {
-            arr[i] = data[i];
+        for (int i = 0; i < data.length; i++) {
+            arr[i + l1] = data[i];
         }
     }
 

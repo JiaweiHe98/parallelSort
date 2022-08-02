@@ -11,6 +11,7 @@ public class Main {
         int partNum = 5;
 
         int[] arr = ArrayGenerator.gen(length, low, high);
+        int[] arr2 = arr.clone();
         int[][] parts = Splitter.split(length, partNum);
 
         Thread[] threads = new Thread[partNum];
@@ -36,7 +37,10 @@ public class Main {
             Merger.merge(arr, 0, parts[i][0] - 1, parts[i][0], parts[i][1] - 1);
         }
 
+        Arrays.sort(arr2);
+
         System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.equals(arr, arr2));
 
         for (int i = 0; i < arr.length - 1; i++) {
             if (arr[i + 1] < arr[i]) {
