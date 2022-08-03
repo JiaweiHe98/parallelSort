@@ -5,13 +5,13 @@ import (
 	"sync"
 )
 
-var wg sync.WaitGroup
-
 func main() {
-	length := 100
-	low := -100
-	high := 100
-	partNum := 5
+	length := 1000000
+	low := -10000
+	high := 10000
+	partNum := 16
+
+	var wg sync.WaitGroup
 
 	arr := ArrayGen(length, low, high)
 	parts := split(length, partNum)
@@ -19,7 +19,7 @@ func main() {
 	wg.Add(partNum)
 	for i := 0; i < partNum; i++ {
 		startEnd := parts[i]
-		go SortWrapper(arr, startEnd[0], startEnd[1]-1)
+		go SortWrapper(arr, startEnd[0], startEnd[1]-1, &wg)
 	}
 
 	wg.Wait()
@@ -34,5 +34,5 @@ func main() {
 		}
 	}
 
-	fmt.Println(arr)
+	fmt.Println(true)
 }

@@ -1,12 +1,9 @@
 package main
 
-import "fmt"
+import "sync"
 
-func SortWrapper(arr []int, start int, end int) {
-	defer func() {
-		wg.Done()
-		fmt.Println("finished", start, end)
-	}()
+func SortWrapper(arr []int, start int, end int, wg *sync.WaitGroup) {
+	defer wg.Done()
 	Sort(arr, start, end)
 }
 
